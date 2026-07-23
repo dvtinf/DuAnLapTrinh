@@ -1,0 +1,20 @@
+[
+  {
+    "title": "A + B Problem",
+    "slug": "a-plus-b",
+    "difficulty": "Easy",
+    "description": "Nhập vào hai số nguyên A và B. Hãy tính tổng của chúng.",
+    "time_limit": 1,
+    "memory_limit": 256,
+    "status": "Public"
+  },
+  {
+    "title": "Tìm số lớn nhất",
+    "slug": "find-max",
+    "difficulty": "Easy",
+    "description": "Cho mảng N số nguyên. Hãy tìm giá trị lớn nhất trong mảng.",
+    "time_limit": 1,
+    "memory_limit": 256,
+    "status": "Public"
+  }
+]

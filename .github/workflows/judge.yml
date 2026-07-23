@@ -1,0 +1,30 @@
+# .github/workflows/judge.yml
+name: C++ Judge System Pipeline
+
+on:
+  push:
+    paths:
+      - 'submissions/**' # Kích hoạt khi có bài nộp mới
+
+jobs:
+  judge:
+    runs-on: ubuntu-latest # Môi trường Sandbox an toàn [23, 24]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup GCC
+        run: sudo apt-get install g++ -y
+
+      - name: Compile Solution
+        run: g++ -std=c++17 -O2 -o solution solution.cpp # Biên dịch tối ưu [23]
+
+      - name: Execute & Sandbox
+        run: |
+          # Chạy chương trình với giới hạn tài nguyên [25, 26]
+          timeout 2s ./solution < input.txt > output.txt 
+
+      - name: Checker
+        run: |
+          # So sánh kết quả đầu ra [27, 28]
+          diff -w output.txt expected_output.txt

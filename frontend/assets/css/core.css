@@ -1,0 +1,24 @@
+:root {
+    /* Hệ màu Primary chuẩn [9] */
+    --primary-color: #2563EB;
+    --primary-hover: #1D4ED8;
+    --primary-active: #1E40AF;
+    
+    /* Hệ màu Gray Scale [11] */
+    --gray-50: #F8FAFC;
+    --gray-900: #0F172A;
+    
+    /* Typography [10] */
+    --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--gray-50);
+    color: var(--gray-900);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.text-primary { color: var(--primary-color) !important; }
+.bg-primary { background-color: var(--primary-color) !important; }

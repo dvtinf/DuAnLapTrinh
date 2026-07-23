@@ -1,0 +1,21 @@
+# D:\DuAnLapTrinh\.gitignore
+
+# Firebase configuration
+.runtimeconfig.json
+.env
+firebase-debug.log
+
+# Node.js
+node_modules/
+npm-debug.log
+
+# Judge system temporary files
+judge-system/temp/*
+*.exe
+*.o
+*.out
+
+# IDE & OS files
+.vscode/
+.DS_Store
+Thumbs.db

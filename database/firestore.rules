@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Quy tắc cho người dùng (Users)
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    // Quy tắc cho bài tập (Problems)
+    match /problems/{problemId} {
+      allow read: if true; // Công khai danh sách bài tập
+      allow write: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['teacher', 'admin'];
+    }
+    // Quy tắc cho bài nộp (Submissions)
+    match /submissions/{submissionId} {
+      allow read: if request.auth != null && (request.auth.uid == resource.data.userId || get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['teacher', 'admin']);
+      allow create: if request.auth != null;
+    }
+  }
+}
