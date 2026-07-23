@@ -1,36 +1,14 @@
-# .github/workflows/deploy.yml
-# Phiên bản tích hợp Kiểm thử tự động (Automated Testing)
-name: Production Deployment Pipeline with Testing
-
+name: GitHub Pages Deployment
 on:
   push:
     branches: [ main ]
-
 jobs:
-  test_and_deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          node-version: '22'
-
-      - name: Install Dependencies
-        run: cd backend && npm install
-
-      - name: Run Automated Tests # Bổ sung bước kiểm thử
-        run: |
-          npm test tests/unit/*.test.js
-          npm test tests/integration/*.test.js
-          npm test tests/security/*.test.js
-
-      - name: Deploy to Firebase # Chỉ chạy nếu các bài Test ở trên PASS
-        if: success()
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
-          channelId: live
-          projectId: cpp-judge-project
+          folder: . # Triển khai từ thư mục gốc
+          branch: gh-pages
